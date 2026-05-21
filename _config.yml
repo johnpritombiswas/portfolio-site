@@ -1,0 +1,84 @@
+# =====================================================================
+# Joshua Mein blog — custom Jekyll site (no external theme)
+# =====================================================================
+
+title: Joshua Mein
+tagline: Building, Breaking & Automating Things
+description: >-
+  A tech blog covering homelab setups, Linux administration, DevOps,
+  cloud computing, networking, security, and IoT projects.
+author: Joshua Mein
+url: "https://joshwaamein.github.io"
+baseurl: ""
+lang: en
+timezone: Europe/London
+
+# Social / SEO
+github_username: Joshwaamein
+linkedin_username: josh-mein
+portfolio_url: "https://joshwaamein.github.io/portfolio-site/"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-archives
+# Note: jekyll-paginate-v1 has destination conflicts when paginate_path
+# overlaps with the source index.html. We do simple "show all 33 posts"
+# on the home page instead — keeps things simple and still fast.
+
+# jekyll-archives
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag:      tag
+  permalinks:
+    category: /categories/:name/
+    tag:      /tags/:name/
+
+# Permalinks
+permalink: /posts/:slug/
+
+# Collections — _tabs holds the top-nav pages (about, archives, categories, tags)
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+# Markdown
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  toc_levels: 2..3
+
+# Build
+exclude:
+  - vendor/
+  - node_modules/
+  - Gemfile*
+  - "*.log"
+  - .github/
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+
+# Frontmatter defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: false
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
